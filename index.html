@@ -43,23 +43,40 @@
       padding: 1rem 0;
     }
     nav .logo {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: #2C7A7B;
     }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1rem;
+      gap: 1.25rem;
     }
     nav ul li a {
       text-decoration: none;
       color: #2C7A7B;
       font-weight: 500;
+      position: relative;
+      padding-bottom: 0.25rem;
       transition: color 0.3s;
     }
+    /* Subrayado animado al pasar el cursor */
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: #F87575;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
     nav ul li a:hover {
-      color: #38A169;
+      color: #F87575;
+    }
+    nav ul li a:hover::after {
+      width: 100%;
+      left: 0;
     }
     /* Hero Section */
     .hero {
@@ -67,9 +84,9 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 4rem 0 2rem;
-      /* Color de fondo suave para el héroe */
-      background-color: #F2FFFC;
+      padding: 5rem 0 3rem;
+      /* Fondo degradado suave para un toque más divertido */
+      background: linear-gradient(135deg, #E0F7FA 0%, #F1F8E9 100%);
     }
     .hero img {
       width: 100%;
@@ -79,9 +96,9 @@
       margin-bottom: 2rem;
     }
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 2.75rem;
       color: #2C7A7B;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
     }
     .hero p {
       font-size: 1.2rem;
@@ -90,18 +107,20 @@
       max-width: 600px;
     }
     .btn-primary {
-      background-color: #38A169;
+      background-color: #F87575;
       color: #fff;
-      padding: 0.75rem 1.5rem;
+      padding: 0.75rem 2rem;
       border: none;
       border-radius: 30px;
       font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.3s;
+      box-shadow: 0 4px 6px rgba(248, 117, 117, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
       text-decoration: none;
     }
     .btn-primary:hover {
-      background-color: #2F855A;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(248, 117, 117, 0.3);
     }
     /* Sections */
     section {
@@ -120,41 +139,45 @@
       text-align: center;
     }
     /* About */
-    .about-content {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      max-width: 800px;
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      max-width: 1000px;
       margin: 0 auto;
-      text-align: justify;
+    }
+    .about-text {
+      text-align: left;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
     }
     /* Services */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 2rem;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
     }
     .service-card {
-      background-color: #FFFFFF;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      border-radius: 16px;
       padding: 2rem 1.5rem;
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
+      color: #ffffff;
     }
     .service-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
     .service-card h3 {
-      font-size: 1.4rem;
-      color: #2C7A7B;
+      font-size: 1.5rem;
       margin-bottom: 0.5rem;
     }
     .service-card p {
-      font-size: 0.95rem;
-      color: #4A5568;
+      font-size: 1rem;
+      line-height: 1.4;
     }
     /* Pricing table */
     .pricing-table {
@@ -182,21 +205,21 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
     }
     .area-card {
-      background-color: #FFFFFF;
-      border-radius: 12px;
+      border-radius: 16px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      padding: 1.5rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, #FFF5F6 0%, #F5F5FF 100%);
     }
     .area-card h3 {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: #2C7A7B;
       margin-bottom: 0.5rem;
     }
     .area-card p {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: #4A5568;
       line-height: 1.5;
     }
@@ -247,17 +270,18 @@
       font-size: 1rem;
     }
     .contact-form button {
-      background-color: #38A169;
+      background-color: #F87575;
       color: #fff;
       padding: 0.75rem;
       border: none;
       border-radius: 30px;
       font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.3s;
     }
     .contact-form button:hover {
-      background-color: #2F855A;
+      background-color: #E26262;
+      transform: translateY(-2px);
     }
     footer {
       background-color: #F0FFF4;
@@ -278,25 +302,39 @@
       nav ul {
         gap: 0.75rem;
       }
+      .about-container {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Gallery styling for about section */
     .about-gallery {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 1rem;
-      margin-top: 1rem;
     }
     .about-gallery img {
       width: 100%;
-      max-width: 260px;
       border-radius: 0.75rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     }
 
     /* Calendar embed wrapper */
     .calendar-wrapper {
       margin-top: 1rem;
+    }
+
+    /* Section background accents for pricing and reservas */
+    #tarifas {
+      background: linear-gradient(135deg, #F4F9FF 0%, #F8F6FF 100%);
+    }
+    #reservas {
+      background: linear-gradient(135deg, #F4FFF8 0%, #F6FFF5 100%);
+    }
+
+    /* Contact section background */
+    #contacto {
+      background: linear-gradient(135deg, #FFF5F8 0%, #F7F5FF 100%);
     }
   </style>
 </head>
@@ -330,16 +368,17 @@
 <section id="sobre">
 <div class="container">
 <h2>Sobre mí</h2>
-<div class="about-content">
-<p>Soy Jorge, un apasionado de los animales y orgulloso granadino. Desde niño he convivido con mascotas y he sentido una conexión especial con los perros. Entiendo lo importante que es para ti que tu perro salga a pasear, ejercitarse y socializar de manera segura cuando tus obligaciones no te lo permiten.</p>
-<p>Mi objetivo es brindar un servicio profesional y cercano, adaptado a las necesidades de cada perro y familia. Además de los paseos, me dedico a informarme sobre adiestramiento básico y primeros auxilios caninos, para garantizar que tu peludo esté en las mejores manos. Creo en la transparencia, por lo que estaré encantado de contarte cómo transcurre cada paseo y enviarte fotos para que sigas su día a día.</p>
+<div class="about-container">
+  <div class="about-text">
+    <p>Soy Jorge, un apasionado de los animales y orgulloso granadino. Desde niño he convivido con mascotas y he sentido una conexión especial con los perros. Entiendo lo importante que es para ti que tu perro salga a pasear, ejercitarse y socializar de manera segura cuando tus obligaciones no te lo permiten.</p>
+    <p>Mi objetivo es brindar un servicio profesional y cercano, adaptado a las necesidades de cada perro y familia. Además de los paseos, me dedico a informarme sobre adiestramiento básico y primeros auxilios caninos, para garantizar que tu peludo esté en las mejores manos. Creo en la transparencia, por lo que estaré encantado de contarte cómo transcurre cada paseo y enviarte fotos para que sigas su día a día.</p>
+  </div>
+  <div class="about-gallery">
+    <!-- Imágenes aportadas por el usuario para personalizar la sección -->
+    <img src="images/jorge_bulldogs.jpg" alt="Jorge con dos bulldogs franceses junto al agua" />
+    <img src="images/jorge_kissing.jpg" alt="Jorge besando a uno de sus bulldogs franceses" />
+  </div>
 </div>
-    <!-- Galería de fotos personalizadas -->
-    <div class="about-gallery">
-      <!-- Imágenes aportadas por el usuario para personalizar la sección -->
-      <img src="jorge_bulldogs.jpg" alt="Jorge con dos bulldogs franceses junto al agua" />
-      <img src="jorge_kissing.jpg" alt="Jorge besando a uno de sus bulldogs franceses" />
-    </div>
 </div>
 </section>
 <!-- Servicios -->
@@ -351,25 +390,25 @@
   Nos aseguramos de que tu peludo haga ejercicio, juegue y libere energía en un entorno seguro. Al terminar el servicio te enviamos fotos y un breve reporte para que sigas sus aventuras. También personalizamos cada ruta en función de las necesidades de tu compañero, fomentamos la socialización controlada con otros perros y practicamos obediencia básica si así lo deseas. Si necesitas un paseo extra largo o un pequeño entrenamiento, estaremos encantados de adaptarnos.
 </p>
 <div class="services-grid">
-<div class="service-card">
+<div class="service-card" style="background: linear-gradient(135deg, #7FC7D9 0%, #A7E9AF 100%);">
 <h3>Paseo corto</h3>
 <p>Sesión de 30 minutos ideal para perros mayores o con poca necesidad de ejercicio. Incluye paseo tranquilo por zonas verdes cercanas.</p>
 </div>
-<div class="service-card">
+<div class="service-card" style="background: linear-gradient(135deg, #F8B195 0%, #F67280 100%);">
 <h3>Paseo estándar</h3>
 <p>Duración de 1 hora para que tu perro explore, juegue y socialice. Incluye actividad física moderada y práctica de obediencia básica.</p>
 </div>
-<div class="service-card">
+<div class="service-card" style="background: linear-gradient(135deg, #A0C4FF 0%, #C3A0FF 100%);">
 <h3>Paseo doble</h3>
 <p>¿Dos perros en casa? Ofrecemos paseos simultáneos con tarifa reducida para que ambos disfruten sin que tu bolsillo sufra.</p>
 </div>
-<div class="service-card">
+<div class="service-card" style="background: linear-gradient(135deg, #F5E6A0 0%, #FBC252 100%);">
 <h3>Paseo de naturaleza</h3>
 <p>Excursión especial de 90 minutos a espacios más amplios como el Mirador de San Miguel Alto o senderos cercanos. Perfecto para perros con mucha energía.</p>
 </div>
 
   <!-- Nuevo servicio de transporte al veterinario o peluquería -->
-  <div class="service-card">
+  <div class="service-card" style="background: linear-gradient(135deg, #B6E2D3 0%, #81B29A 100%);">
     <h3>Transporte veterinario/peluquería</h3>
     <p>Recogemos a tu perro en casa, lo acompañamos a su cita en el veterinario o la peluquería y lo devolvemos a tu domicilio. Incluye acompañamiento durante la espera y atención personalizada en todo momento.</p>
   </div>
